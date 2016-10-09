@@ -32,17 +32,17 @@ RUN ln -s /etc/nginx/sites-available/pietunes /etc/nginx/sites-enabled
 
 # add application components
 USER pie
-RUN mkdir $home/pietunes
-COPY files/requirements.txt $home/pietunes/requirements.txt
-COPY configs/pietunes.ini $home/pietunes/pietunes.ini
-ADD src $home/pietunes/
-RUN touch $home/pietunes/pietunes.sock
-
-RUN echo "export WORKON_HOME=$home/.venvs" >> $home/.bashrc
-RUN echo "source /usr/local/bin/virtualenvwrapper.sh" >> $home/.bashrc
-
+WORKDIR ${home}
+RUN mkdir pietunes
+COPY files/requirements.txt pietunes/requirements.txt
+COPY configs/pietunes.ini pietunes/pietunes.ini
+RUN rm -v ${home}/.bashrc
+COPY files/bashrc ${home}/.bashrc
+ADD src pietunes/
+RUN touch pietunes/pietunes.sock
 
 USER root
+
 EXPOSE 80
 
 CMD service nginx start

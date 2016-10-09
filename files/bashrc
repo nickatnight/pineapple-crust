@@ -113,11 +113,14 @@ if ! shopt -oq posix; then
 fi
 
 function mkvenv() {
-    mkvirtualenv pie-tunes-2
-    pip install -r /home/pie/pietunes/requirements.txt
+    if ! [[ -d /home/pie/.venvs/pie-tunes-2 ]]; then
+        mkvirtualenv pie-tunes-2
+        pip install uwsgi flask
+    fi
 }
 
 export WORKON_HOME=/home/pie/.venvs
 source /usr/local/bin/virtualenvwrapper.sh
 
-echo "Loading local settings..." && source ~/.bashrc_local
+mkvenv
+workon pie-tunes-2
