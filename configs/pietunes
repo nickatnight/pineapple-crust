@@ -1,0 +1,9 @@
+server {
+    listen 80;
+    server_name 198.162.1.11;
+
+    location / {
+        include uwsgi_params;
+        uwsgi_pass unix:/home/pie/pietunes/pietunes.sock;
+    }
+}
