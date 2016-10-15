@@ -1,0 +1,21 @@
+version: '2'
+services:
+    app:
+        container_name: app
+        build:
+            context: ./app
+            dockerfile: ./Dockerfile
+        depends_on:
+            - nginx
+        env_file:
+            - .env
+        ports:
+            - "5000:5000"
+
+    nginx:
+        container_name: nginx
+        build:
+            context: ./nginx
+            dockerfile: ./Dockerfile
+        ports:
+            - "9080:80"
