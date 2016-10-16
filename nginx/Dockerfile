@@ -12,12 +12,11 @@ RUN apt-get update && apt-get install -y \
 
 # set up nginx server configs, upstart script, and server block config
 RUN rm -v /etc/nginx/nginx.conf
+RUN rm -v /etc/nginx/sites-enabled/default
 COPY configs/nginx.conf /etc/nginx/nginx.conf
-COPY configs/pietunes.conf /etc/init/pietunes.conf
 COPY configs/pietunes /etc/nginx/sites-available/pietunes
-COPY configs/pietunes.ini pietunes/pietunes.ini
 RUN ln -s /etc/nginx/sites-available/pietunes /etc/nginx/sites-enabled
 
-EXPOSE 80:80
+EXPOSE 9080:80
 
 CMD service nginx start

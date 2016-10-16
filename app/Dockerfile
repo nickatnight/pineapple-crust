@@ -12,7 +12,9 @@ RUN apt-get update && apt-get install -y \
 
 RUN mkdir pietunes
 COPY configs/requirements.txt pietunes/requirements.txt
+COPY configs/pietunes.conf /etc/init/pietunes.conf
+COPY configs/pietunes.ini pietunes/pietunes.ini
 ADD src pietunes/
 EXPOSE 5000:5000
-RUN pip install -r /pietunes/requirements.txt
-CMD python pietunes/pietunes.py
+RUN pip install uwsgi flask
+CMD /usr/local/bin/uwsgi --ini pietunes/pietunes.ini

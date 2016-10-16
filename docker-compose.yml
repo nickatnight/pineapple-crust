@@ -5,8 +5,6 @@ services:
         build:
             context: ./app
             dockerfile: ./Dockerfile
-        depends_on:
-            - nginx
         env_file:
             - .env
         ports:
@@ -17,5 +15,7 @@ services:
         build:
             context: ./nginx
             dockerfile: ./Dockerfile
+        depends_on:
+            - app
         ports:
             - "9080:80"
