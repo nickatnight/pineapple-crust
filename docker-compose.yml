@@ -19,3 +19,12 @@ services:
             - app
         ports:
             - "9080:80"
+
+    es:
+        container_name: es
+        build:
+            context: ./es
+            dockerfile: ./Dockerfile
+        ports:
+            - "9200:9200"
+            - "9300:9300"
