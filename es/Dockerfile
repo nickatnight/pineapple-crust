@@ -15,6 +15,7 @@ RUN echo "deb http://archive.raspberrypi.org/debian/ jessie main" >> /etc/apt/so
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 ENV ES_HOME /usr/share/elasticsearch
+ENV UTILS_DIR /pietunes/utils
 
 # Install Elasticsearch.
 RUN apt-get update && apt-get install -y wget && \
@@ -27,11 +28,19 @@ RUN apt-get update && apt-get install -y wget && \
 RUN rm -v /etc/elasticsearch/elasticsearch.yml
 ADD configs/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 RUN update-rc.d elasticsearch defaults
-RUN /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
+RUN $ES_HOME/bin/plugin install mobz/elasticsearch-head
+
+RUN mkdir -p $UTILS_DIR
+RUN touch $UTILS_DIR/__init__.py
+COPY files/colors.py $UTILS_DIR/colors.py
+COPY files/setup.json $UTILS_DIR/setup.json
+COPY files/setup.sh $UTILS_DIR/setup.sh
+COPY files/utils.py $UTILS_DIR/utils.py
+
 # Define default command.
-RUN ln -s /etc/elasticsearch/ /usr/share/elasticsearch/config
+RUN ln -s /etc/elasticsearch/ $ES_HOME/config
 CMD sudo service elasticsearch start && \
-    /usr/share/elasticsearch/bin/elasticsearch -Des.insecure.allow.root=true
+    $ES_HOME/bin/elasticsearch -Des.insecure.allow.root=true
 
 # Expose ports.
 EXPOSE 9200
