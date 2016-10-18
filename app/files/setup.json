@@ -1,0 +1,28 @@
+{
+    "settings": {
+        "number_of_shards":1,
+        "number_of_replicas": 0
+    },
+    "mappings": {
+        "nick": {
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "artist": {
+                    "type": "string"
+                },
+                "album": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "year": {
+                    "type": "string",
+                    "null_value": "0"
+                }
+            }
+        }
+    }
+}

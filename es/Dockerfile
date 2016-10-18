@@ -34,6 +34,6 @@ CMD sudo service elasticsearch start && \
     /usr/share/elasticsearch/bin/elasticsearch -Des.insecure.allow.root=true
 
 # Expose ports.
-EXPOSE 9200:9200
-EXPOSE 9300:9300
+EXPOSE 9200
+EXPOSE 9300
 

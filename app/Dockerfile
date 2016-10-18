@@ -14,7 +14,17 @@ RUN mkdir pietunes
 COPY configs/requirements.txt pietunes/requirements.txt
 COPY configs/pietunes.conf /etc/init/pietunes.conf
 COPY configs/pietunes.ini pietunes/pietunes.ini
+
+RUN mkdir pietunes/utils
+RUN touch pietunes/utils/__init__.py
+COPY files/colors.py pietunes/utils/colors.py
+COPY files/setup.json pietunes/utils/setup.json
+COPY files/setup.sh pietunes/utils/setup.sh
+COPY files/utils.py pietunes/utils/utils.py
 ADD src pietunes/
-EXPOSE 5000:5000
-RUN pip install uwsgi flask
+
+EXPOSE 5000
+
+RUN pip install -r pietunes/requirements.txt
+
 CMD /usr/local/bin/uwsgi --ini pietunes/pietunes.ini
