@@ -11,6 +11,8 @@ services:
             - es
         ports:
             - "5000:5000"
+        volumes:
+            - /mnt/seagatehd/Music:/mnt/seagatehd/Music
 
     nginx:
         container_name: nginx
