@@ -17,6 +17,6 @@ COPY configs/nginx.conf /etc/nginx/nginx.conf
 COPY configs/pietunes /etc/nginx/sites-available/pietunes
 RUN ln -s /etc/nginx/sites-available/pietunes /etc/nginx/sites-enabled
 
-EXPOSE 9080:80
+EXPOSE 80
 
 CMD service nginx start
