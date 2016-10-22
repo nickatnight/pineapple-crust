@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for m in music.hits.hits %}
+    <div class="row high">
+        <div id="songTitle{{m._id}}" class="col-md-5 col-sm-4 col-xs-4">
+            {{m._source.title}}
+        </div>
+        <div id="songArtist{{m._id}}" class="col-md-3 col-sm-4 col-xs-4">
+            {{m._source.artist}}
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            {{m._source.album}}
+        </div>
+        <div class="path" id="{{m._id}}" style="display:none;">
+            {{m._source.path}}
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

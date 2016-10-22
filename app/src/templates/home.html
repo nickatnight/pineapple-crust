@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="back-g">
+    <div class="" style="text-align:center;">
+        <h5 id="songTitleDisplay"></h5>
+        <audio id="player" controls>
+            <source src="" id="id_player" type="audio/mpeg">
+        </audio>
+    </div>
+    <div class=row>
+        <div class="col-md-5 col-sm-4 col-xs-4">
+            <h3><u>Title</u></h3>
+        </div>
+        <div class="col-md-3 col-sm-4 col-xs-4">
+            <h3><u>Artist</u></h3>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <h3><u>Album</u></h3>
+        </div>
+    </div>
+    {% for m in music.hits.hits %}
+    <div class="row high">
+        <div id="songTitle{{m._id}}" class="col-md-5 col-sm-4 col-xs-4">
+            {{m._source.title}}
+        </div>
+        <div id="songArtist{{m._id}}" class="col-md-3 col-sm-4 col-xs-4">
+            {{m._source.artist}}
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            {{m._source.album}}
+        </div>
+        <div class="path" id="{{m._id}}" style="display:none;">
+            {{m._source.path}}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
