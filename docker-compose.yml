@@ -7,8 +7,12 @@ services:
             dockerfile: ./Dockerfile
         env_file:
             - .env
+        depends_on:
+            - es
         ports:
             - "5000:5000"
+        volumes:
+            - /mnt/seagatehd/Music:/mnt/seagatehd/Music
 
     nginx:
         container_name: nginx
@@ -18,7 +22,7 @@ services:
         depends_on:
             - app
         ports:
-            - "9080:80"
+            - "80:80"
 
     es:
         container_name: es
