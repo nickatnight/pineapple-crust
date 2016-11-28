@@ -25,7 +25,7 @@ def index(title_letter):
 
     es = Elasticsearch(['http://es:9200'])
     query = es.search(index="music", body={"size":80, "query":
-                                           {"prefix":{"artist": title_letter}}})
+                                           {"match_phrase_prefix":{"artist": title_letter}}})
     
     return render_template('index.html', music=query, chars=c)
 
