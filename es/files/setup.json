@@ -2,7 +2,7 @@
     "settings": {
         "number_of_shards":1,
         "number_of_replicas": 0,
-        "index: {
+        "index": {
             "analysis": {
                 "analyzer": {
                     "analyzer_startswith": {
@@ -19,17 +19,17 @@
                 "title": {
                     "type": "string",
                     "search_analyzer": "analyzer_startswith",
-                    "index_analyzer": "analyzer_startswith"
+                    "analyzer": "analyzer_startswith"
                 },
                 "artist": {
                     "type": "string",
                     "search_analyzer": "analyzer_startswith",
-                    "index_analyzer": "analyzer_startswith"
+                    "analyzer": "analyzer_startswith"
                 },
                 "album": {
                     "type": "string",
                     "search_analyzer": "analyzer_startswith",
-                    "index_analyzer": "analyzer_startswith"
+                    "analyzer": "analyzer_startswith"
                 },
                 "path": {
                     "type": "string"
