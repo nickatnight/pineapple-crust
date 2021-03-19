@@ -6,7 +6,7 @@ elasticsearch==2.3.0
 Flask==0.10.1
 imagesize==0.7.1
 itsdangerous==0.24
-Jinja2==2.8
+Jinja2==2.11.3
 MarkupSafe==0.23
 mutagen==1.31
 Pygments==2.1.3
